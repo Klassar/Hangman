@@ -1,5 +1,5 @@
 # Hangman
-Just a fun hangman game developed in es6 and jQuery. 
+Just a fun hangman game developed with es6 and jQuery. 
 
 # Contributing
 Feel free to add to the game, all addtions are welcomed!
