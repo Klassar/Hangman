@@ -1,0 +1,158 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0 auto;
+}
+body {
+  padding: 1em;
+  min-width: 700px;
+  max-width: 700px;
+}
+
+/* styles for hangman graphic animation */
+#main {
+	width: 100%;
+	height: 500px;
+	padding: 0;
+	margin: 0 0 1em 0;
+
+	border-radius: 8px;
+
+	background-image: url(https://phandroid.s3.amazonaws.com/wp-content/uploads/2015/07/8-bit-landscape-1.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+
+  display: table;
+}
+.main-inner {
+  display: table-cell;
+  vertical-align: bottom;
+  text-align: center;
+}
+.hangman {
+	width: 250px;
+	position: relative;
+	bottom: 20px;
+}
+/* styles for hangman graphic animation */
+
+
+/* styles for stats launch icon */
+#ui-container {
+  display: table;
+  width: 100%;
+}
+#launchStats {
+  float: right;
+  width: calc(30% - 1em);
+  background-color: #7fad71;
+  padding: 15px;
+  border-radius: 8px;
+}
+#launchStats hr {
+  border: 1px solid #fff;
+  width: 100%;
+  margin: 10px 0;
+}
+.stat {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  font-size: 1.6em;
+  color: #fff;
+  font-weight: normal;
+}
+.stat span {
+  font-size: 18px;
+  margin-left: 5px;
+}
+/* styles for stats launch icon */
+
+
+/* keybord styles */
+.keyboard-container {
+  background-color: #7fad71;
+  width: 70%;
+  padding: 15px;
+  border-radius: 8px;
+  float: left;
+}
+
+#alphabet-keypad {
+  text-align: center;
+  border: 1px solid #6992f2;
+  background-color: #6992f2;
+  border-radius: 15px;
+  box-shadow: 0 0 7px 1px rgba(0,0,0,0.25);
+  max-width: 440px;
+  margin: 0;
+  padding: 10px;
+}
+.letter-button, .letter-disabled {
+  border-radius: 50%;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 1.6em;
+  height: auto;
+  margin: 0.2em 0.1em;
+  padding: 5px 0;
+  width: 1.6em;
+
+  transition: color 0.2s,
+  background-color 0.2s;
+}
+.letter-button {
+  border: 1px solid #fff;
+  color: #fff;
+}
+.letter-button:hover {
+  background-color: #fff;
+  color: #6992f2;
+  cursor: pointer;
+}
+.letter-disabled {
+  border: 1px solid rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.4);
+  cursor: default;
+}
+
+.character-block {
+  display: inline-block;
+  width: 2.5em;
+  height: 35px;
+  margin: 0 10px;
+  vertical-align: top;
+  text-align: center;
+}
+.character-block span {
+  font-size: 1.5em;
+  color: #fff;
+}
+.is-letter {
+  box-shadow: 0 .1em 0 0 #fff;
+}
+/* keybord styles */
+
+
+/* guess word styles */
+#guessWordContainer {
+  width: 100%;
+  background: #6992f2;
+  padding: 0;
+  margin: 1em 0 0 0;
+  border-radius: 8px;
+  height: 80px;
+  display: table;
+}
+.guessWordContainer-inner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+/* guess word styles */
