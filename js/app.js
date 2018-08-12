@@ -1,10 +1,16 @@
+/**
+Let the application create both a `win` & `loss` local storage key
+when the application launches if none have already been created.
+
+Currently without it doing returns undefined/NaN on fresh application launch.
+**/
 $(function() {
 	// ======================== MODEL ======================== //
 	const model = {
 		// track guess count & games won/lost.
 		guessCount: 0,
-		winCount: 0,
-		lossCount: 0,
+		winCount: localStorage.wins,
+		lossCount: localStorage.losses,
 		// word list.
 		guessWords: [
 			"germany","zebra","and","bunny","to","apple","is","you","that","it","he",
@@ -24,6 +30,12 @@ $(function() {
 	const controller = {
 		// initializes the view.
 		init: () => {
+			// initialize local storage with `win` / `loss` keys if none already exist.
+			if (!model.winCount && !model.lossCount) {
+				localStorage.setItem('wins', '0');
+				localStorage.setItem('losses', '0');
+			}
+			// initilizes view.
 			view.init()
 		},
 
@@ -49,17 +61,37 @@ $(function() {
 
 		// return current win count.
 		getCurrentWinCount: () => model.winCount,
-		// update winCount on game win.
-		updateGameWins: () => {
-			model.winCount++;
+
+
+		// local storage.
+		localStoreWinCount: function() {
+			localStorage.setItem('wins', model.winCount);
+		},
+		displayLocalStoreWinCount: function() {
+			localStorage.wins;
+		},
+		updateLocalStoreWinCount: function() {
+			localStorage.wins++;
+		},
+
+		localStoreLossCount: function() {
+			localStorage.setItem('losses', model.lossCount);
+		},
+		displayLocalStoreLossCount: function() {
+			localStorage.losses.toString();
+		},
+		updateLocalStoreLossCount: function() {
+			localStorage.losses++;
 		},
 
 		// return current wins.
 		getCurrentLossCount: () => model.lossCount,
-		// update winCount on game win.
+
+		// update winCount on game win. `did not use local storage`
 		updateGameLosses: () => {
 			model.lossCount++;
 		},
+
 	};
 	// ======================== VIEW ======================== //
 	const view = {
@@ -68,6 +100,10 @@ $(function() {
 			// setup variables.
   		let currentWordFull;
   		const currentWord = controller.getRandomWord();
+
+  		// Sets current win count to win count in local storage.
+			document.getElementById("winCount").innerHTML = localStorage.wins;
+			document.getElementById("lossCount").innerHTML = localStorage.losses;
 
 			// calls render function.
 			this.render();
@@ -103,8 +139,10 @@ $(function() {
 		    if (correctlyGuessedLettersCount === currentWord.length) {
 		    	alert("YOU WON!!");
 
-		    	controller.updateGameWins();
-		    	document.getElementById("winCount").innerHTML = controller.getCurrentWinCount();
+		    	// controller.updateGameWins();
+		    	controller.updateLocalStoreWinCount();
+
+		    	document.getElementById("winCount").innerHTML = localStorage.wins;
 
 		    	resetGame();
 		    }
@@ -116,8 +154,10 @@ $(function() {
 		    if (maxCount == 7) {
 		    	alert("YOU LOST...");
 
-		    	controller.updateGameLosses();
-		    	document.getElementById("lossCount").innerHTML = controller.getCurrentLossCount();
+		    	// controller.updateGameLosses();
+		    	controller.updateLocalStoreLossCount();
+
+		    	document.getElementById("lossCount").innerHTML = localStorage.losses;
 
 		    	resetGame();
 		    }
